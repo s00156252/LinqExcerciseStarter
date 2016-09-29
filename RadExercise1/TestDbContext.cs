@@ -56,6 +56,22 @@ namespace RadExercise1
         }
         private void seedClubs()
         {
+            ClubEvent clubEv = new ClubEvent();
+            clubEv.StartDateTime = DateTime.Now;
+            clubEv.EndDateTime = DateTime.Now.AddHours(6);
+            clubEv.attendees = new List<Member>(); 
+            clubEv.Venue = "sligo";
+
+            Member rndMember = new Member();
+            rndMember.memberID = Guid.NewGuid();
+            rndMember.StudentID = Guid.NewGuid();
+            rndMember.approved = true;
+
+            Member otherMem = new Member();
+            otherMem.memberID = Guid.NewGuid();
+            otherMem.StudentID = Guid.NewGuid();
+            otherMem.approved = false;
+            
             // Create a list of clubs and populate it test data
             Clubs = new List<Club>()
             // Club collection
@@ -66,8 +82,8 @@ namespace RadExercise1
                 ClubName = "ITS FC",
                 // Select a random student
                 adminID = GetRandomAdmin(),
-                 ClubEvents = new List<ClubEvent>(),
-                 ClubMembers = new List<Member>(),
+                 ClubEvents = new List<ClubEvent>() { clubEv},
+                 ClubMembers = new List<Member>() {rndMember },
                    CreationDate = DateTime.Now
                     },
                 // Second Club record
@@ -77,7 +93,7 @@ namespace RadExercise1
                 // Select a random student
                 adminID = GetRandomAdmin(),
                  ClubEvents = new List<ClubEvent>(),
-                 ClubMembers = new List<Member>(),
+                 ClubMembers = new List<Member>() { otherMem},
                    CreationDate = DateTime.Now
                     },
                 // Third Club record
@@ -86,14 +102,15 @@ namespace RadExercise1
                 ClubName = "The Chess Club ",
                 // Select a random student
                 adminID = GetRandomAdmin(),
-                 ClubEvents = new List<ClubEvent>(),
+                 ClubEvents = new List<ClubEvent>() {clubEv}, 
                  ClubMembers = new List<Member>(),
                    CreationDate = DateTime.Now
                     },
-
+                
             };
-
+            
         }
+
 
         public void Dispose()
         {
