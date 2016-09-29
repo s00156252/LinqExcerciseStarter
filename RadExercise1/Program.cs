@@ -109,10 +109,13 @@ namespace RadExercise1
         {
             using (TestDbContext db = new TestDbContext())
             {
+                foreach(Club cl in db.Clubs) { 
                 var q7 = from c in db.Clubs
-                         orderby c.ClubName
-                         select c.Info;
-                Console.WriteLine(q7);
+                         orderby c.ClubName ascending
+                         select c;
+                
+                Console.WriteLine(cl.ClubName + ' '+ cl.id);
+                }
             }
                  
         }
